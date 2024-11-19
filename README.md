@@ -109,6 +109,32 @@ Assign and Track Issues:
 Assign issues to specific team members using GitHub’s Assignees feature.
 Use Milestones to group issues by project phase or major deliverables (e.g., Milestone 1: OMS Development).
 
+Change Request Workflow:
+Submit a GitHub Issue for any proposed changes.
+Include impact assessment (e.g., cost, timeline) and priority.
+High-impact changes require team discussion before approval (use Discord or Zoom).
+5. Defect Tracking
+Defect Logging:
+Log defects as GitHub Issues, using the defect template outlined earlier.
+Assign severity labels (e.g., low, medium, high) to prioritize resolution.
+Tracking Progress:
+Use GitHub’s Projects feature to track defect resolution in a Kanban-style board:
+Columns: Open, In Progress, Testing, Closed.
+Move issues through the workflow as they are addressed.
+Testing Verification:
+After a defect is resolved, Nate or Derrick verifies the fix before closing the issue.
+
+Documentation and Communication
+Central Documentation:
+Use the repository’s Wiki or README to maintain documentation, including:
+Project overview.
+Development workflows.
+Risk management updates.
+Change log.
+Testing checklists.
+Notifications and Updates:
+Use GitHub’s built-in notifications to keep the team informed of issue updates, PR statuses, and comments.
+Send summary updates via email or during regular team meetings for critical changes or progress.
 
 
 Contact
