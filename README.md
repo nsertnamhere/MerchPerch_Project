@@ -88,6 +88,29 @@ Make changes and commit: git commit -m "Add: Description of your change"
 
 Push your changes and create a pull request.
 
+ Pull Requests and Reviews
+Pull Request Workflow:
+When a team member finishes a task, they should:
+Push their changes to a branch (e.g., feature-OMS).
+Open a pull request (PR) to merge the branch into the main or appropriate development branch.
+Add reviewers for feedback.
+PR template example:
+## Summary
+[Brief overview of changes made]
+## Related Issues
+Closes #[Issue Number]
+## Testing Steps
+[Steps to test the changes]
+Code Reviews:
+Designate reviewers for each PR (e.g., Ivan for API-related changes, Nate for QA, Derrick for documentation).
+Require at least one reviewer’s approval before merging into the main branch.
+
+Assign and Track Issues:
+Assign issues to specific team members using GitHub’s Assignees feature.
+Use Milestones to group issues by project phase or major deliverables (e.g., Milestone 1: OMS Development).
+
+
+
 Contact
 
 Project Lead: Nick
