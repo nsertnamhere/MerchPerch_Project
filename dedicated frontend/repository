@@ -1,0 +1,16 @@
+MerchPerch_Project/
+├── docs/                  
+├── src/                  
+│   ├── api/             
+│   ├── backend/         
+│   ├── frontend/         # Front-end code
+│       ├── public/       # Static HTML/CSS/Images
+│       ├── components/   # React components
+│       ├── views/        # Views/pages
+│       ├── App.js        # Main App component
+│       └── index.js      # Entry point
+├── tests/                
+├── .github/              
+├── .gitignore            
+├── README.md             
+└── package.json          
