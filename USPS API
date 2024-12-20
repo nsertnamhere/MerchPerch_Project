@@ -1,0 +1,85 @@
+import requests
+from xml.etree import ElementTree as ET
+
+# Replace with your USPS User ID
+USPS_USER_ID = "your_usps_user_id"
+
+def verify_address(address):
+    url = "https://secure.shippingapis.com/ShippingAPI.dll"
+    xml_request = f"""
+    <AddressValidateRequest USERID="{USPS_USER_ID}">
+        <Address ID="0">
+            <Address1>{address.get('address1', '')}</Address1>
+            <Address2>{address.get('address2', '')}</Address2>
+            <City>{address.get('city', '')}</City>
+            <State>{address.get('state', '')}</State>
+            <Zip5>{address.get('zip5', '')}</Zip5>
+            <Zip4>{address.get('zip4', '')}</Zip4>
+        </Address>
+    </AddressValidateRequest>
+    """
+    params = {"API": "Verify", "XML": xml_request}
+    response = requests.get(url, params=params)
+    return ET.fromstring(response.text)
+
+def track_package(tracking_number):
+    url = "https://secure.shippingapis.com/ShippingAPI.dll"
+    xml_request = f"""
+    <TrackRequest USERID="{USPS_USER_ID}">
+        <TrackID ID="{tracking_number}"></TrackID>
+    </TrackRequest>
+    """
+    params = {"API": "TrackV2", "XML": xml_request}
+    response = requests.get(url, params=params)
+    return ET.fromstring(response.text)
+
+def calculate_rate(origin_zip, destination_zip, weight_ounces, mail_service="PRIORITY"):
+    url = "https://secure.shippingapis.com/ShippingAPI.dll"
+    xml_request = f"""
+    <RateV4Request USERID="{USPS_USER_ID}">
+        <Revision>2</Revision>
+        <Package ID="1ST">
+            <Service>{mail_service}</Service>
+            <ZipOrigination>{origin_zip}</ZipOrigination>
+            <ZipDestination>{destination_zip}</ZipDestination>
+            <Pounds>0</Pounds>
+            <Ounces>{weight_ounces}</Ounces>
+            <Container/>
+            <Size>REGULAR</Size>
+        </Package>
+    </RateV4Request>
+    """
+    params = {"API": "RateV4", "XML": xml_request}
+    response = requests.get(url, params=params)
+    return ET.fromstring(response.text)
+
+def estimate_delivery_date(origin_zip, destination_zip):
+    url = "https://secure.shippingapis.com/ShippingAPI.dll"
+    xml_request = f"""
+    <PriorityMailRequest USERID="{USPS_USER_ID}">
+        <OriginZip>{origin_zip}</OriginZip>
+        <DestinationZip>{destination_zip}</DestinationZip>
+    </PriorityMailRequest>
+    """
+    params = {"API": "PriorityMail", "XML": xml_request}
+    response = requests.get(url, params=params)
+    return ET.fromstring(response.text)
+
+# Example Usage
+if __name__ == "__main__":
+    address = {
+        "address1": "",
+        "address2": "1600 Amphitheatre Pkwy",
+        "city": "Mountain View",
+        "state": "CA",
+        "zip5": "94043",
+        "zip4": "",
+    }
+    print(verify_address(address))
+    
+    tracking_number = "9400110200864991770465"
+    print(track_package(tracking_number))
+    
+    print(calculate_rate("94043", "10001", "16"))
+    
+    print(estimate_delivery_date("94043", "10001"))
